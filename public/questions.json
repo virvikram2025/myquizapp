@@ -1,0 +1,502 @@
+[
+  {
+    "question": "What is the purpose of @Input in Angular?",
+    "options": [
+      "To bind data from child to parent",
+      "To define a route",
+      "To create a service",
+      "To bind data from parent to child"
+    ],
+    "answer": "To bind data from parent to child"
+  },
+  {
+    "question": "Which lifecycle hook is called when Angular has fully initialized the component’s view?",
+    "options": [
+      "ngOnInit",
+      "ngAfterViewInit",
+      "ngDoCheck",
+      "ngOnChanges"
+    ],
+    "answer": "ngAfterViewInit"
+  },
+  {
+    "question": "How do you define a service in Angular?",
+    "options": [
+      "Using the @Pipe decorator",
+      "Using the @Injectable decorator",
+      "Using the @Directive decorator",
+      "Using the @Component decorator"
+    ],
+    "answer": "Using the @Injectable decorator"
+  },
+  {
+    "question": "Which operator is used to combine multiple Observables in Angular?",
+    "options": [
+      "switchMap",
+      "forkJoin",
+      "combineLatest",
+      "merge"
+    ],
+    "answer": "combineLatest"
+  },
+  {
+    "question": "How do you create a custom pipe in Angular?",
+    "options": [
+      "By using the @Injectable decorator",
+      "By implementing the PipeTransform interface",
+      "By using the @Directive decorator",
+      "By extending the Component class"
+    ],
+    "answer": "By implementing the PipeTransform interface"
+  },
+  {
+    "question": "What is the purpose of the HttpClientModule in Angular?",
+    "options": [
+      "To handle HTTP requests",
+      "To define services",
+      "To create components",
+      "To manage application routes"
+    ],
+    "answer": "To handle HTTP requests"
+  },
+  {
+    "question": "Which lifecycle hook is called when Angular detects changes in the component’s input properties?",
+    "options": [
+      "ngOnInit",
+      "ngAfterViewInit",
+      "ngOnChanges",
+      "ngDoCheck"
+    ],
+    "answer": "ngOnChanges"
+  },
+  {
+    "question": "What is the purpose of the @ViewChild decorator in Angular?",
+    "options": [
+      "To create a service",
+      "To bind data from parent to child",
+      "To access a child component or directive",
+      "To define a route"
+    ],
+    "answer": "To access a child component or directive"
+  },
+  {
+    "question": "How do you handle form validation in Angular?",
+    "options": [
+      "Using the @Directive decorator",
+      "Using the @Input decorator",
+      "Using Reactive Forms or Template-driven Forms",
+      "Using the @Output decorator"
+    ],
+    "answer": "Using Reactive Forms or Template-driven Forms"
+  },
+  {
+    "question": "What is the purpose of the @HostListener decorator in Angular?",
+    "options": [
+      "To create a service",
+      "To bind data from parent to child",
+      "To define a route",
+      "To listen to events on the host element"
+    ],
+    "answer": "To listen to events on the host element"
+  },
+  {
+    "question": "How do you create a custom directive in Angular?",
+    "options": [
+      "By using the @Component decorator",
+      "By using the @Directive decorator",
+      "By implementing the PipeTransform interface",
+      "By using the @Injectable decorator"
+    ],
+    "answer": "By using the @Directive decorator"
+  },
+  {
+    "question": "How do you create a lazy-loaded module in Angular?",
+    "options": [
+      "By using the @Injectable decorator",
+      "By using the loadChildren property in the route configuration",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the loadChildren property in the route configuration"
+  },
+  {
+    "question": "What is the purpose of the @Output decorator in Angular?",
+    "options": [
+      "To emit events from a child component to a parent component",
+      "To bind data from parent to child",
+      "To define a route",
+      "To create a service"
+    ],
+    "answer": "To emit events from a child component to a parent component"
+  },
+  {
+    "question": "How do you handle HTTP errors in Angular?",
+    "options": [
+      "Using the @Directive decorator",
+      "Using the @Input decorator",
+      "Using the catchError operator in the HttpClient",
+      "Using the @Output decorator"
+    ],
+    "answer": "Using the catchError operator in the HttpClient"
+  },
+  {
+    "question": "How do you create a pipe in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Injectable decorator",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the @Pipe decorator"
+  },
+  {
+    "question": "What is the purpose of the ngStyle directive in Angular?",
+    "options": [
+      "To create a form",
+      "To handle events",
+      "To iterate over a collection",
+      "To conditionally apply inline styles to an element"
+    ],
+    "answer": "To conditionally apply inline styles to an element"
+  },
+  {
+    "question": "How do you create a custom event in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Output decorator and EventEmitter",
+      "By using the @Input decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the @Output decorator and EventEmitter"
+  },
+  {
+    "question": "How do you create a service in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Injectable decorator",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the @Injectable decorator"
+  },
+  {
+    "question": "What is the purpose of the ngTemplate directive in Angular?",
+    "options": [
+      "To define a reusable template",
+      "To handle events",
+      "To create a form",
+      "To conditionally display elements"
+    ],
+    "answer": "To define a reusable template"
+  },
+  {
+    "question": "How do you create a custom validator in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By implementing the Validator interface",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By implementing the Validator interface"
+  },
+  {
+    "question": "How do you create a custom pipe in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Injectable decorator",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the @Pipe decorator"
+  },
+  {
+    "question": "What is the purpose of the ngIfElse directive in Angular?",
+    "options": [
+      "To handle events",
+      "To create a form",
+      "To iterate over a collection",
+      "To conditionally display elements with an alternative template"
+    ],
+    "answer": "To conditionally display elements with an alternative template"
+  },
+  {
+    "question": "How do you create a custom directive in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Directive decorator",
+      "By using the @Injectable decorator",
+      "By using the @Component decorator"
+    ],
+    "answer": "By using the @Directive decorator"
+  },
+  {
+    "question": "What is the purpose of the ngModelGroup directive in Angular?",
+    "options": [
+      "To group form controls in a form",
+      "To create a service",
+      "To handle events",
+      "To conditionally display elements"
+    ],
+    "answer": "To group form controls in a form"
+  },
+  {
+    "question": "How do you create a custom HTTP interceptor in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By implementing the HttpInterceptor interface",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By implementing the HttpInterceptor interface"
+  },
+  {
+    "question": "What is the purpose of the ngSwitchDefault directive in Angular?",
+    "options": [
+      "To define a default case in a switch expression",
+      "To create a form",
+      "To handle events",
+      "To iterate over a collection"
+    ],
+    "answer": "To define a default case in a switch expression"
+  },
+  {
+    "question": "How do you create a custom animation in Angular?",
+    "options": [
+      "By using the @Pipe decorator",
+      "By using the @Component decorator with animations metadata",
+      "By using the @Injectable decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By using the @Component decorator with animations metadata"
+  },
+  {
+    "question": "How do you create a custom pipe with parameters in Angular?",
+    "options": [
+      "By using the @Injectable decorator",
+      "By implementing the PipeTransform interface with a transform method that accepts parameters",
+      "By using the @Component decorator",
+      "By using the @Directive decorator"
+    ],
+    "answer": "By implementing the PipeTransform interface with a transform method that accepts parameters"
+  },
+  {
+    "question": "What is the purpose of the ngContainer directive in Angular?",
+    "options": [
+      "To group elements without adding extra DOM nodes",
+      "To handle events",
+      "To create a form",
+      "To conditionally display elements"
+    ],
+    "answer": "To group elements without adding extra DOM nodes"
+  },
+  {
+    "question": "What is the purpose of the ngTemplateOutlet directive in Angular?",
+    "options": [
+      "To render a template dynamically",
+      "To handle events",
+      "To create a form",
+      "To conditionally display elements"
+    ],
+    "answer": "To render a template dynamically"
+  },
+  {
+    "question": "How do you create a form in Angular?",
+    "options": [
+      "Using the @Directive decorator",
+      "Using Reactive Forms or Template-driven Forms",
+      "Using the @Input decorator",
+      "Using the @Output decorator"
+    ],
+    "answer": "Using Reactive Forms or Template-driven Forms"
+  },
+  {
+    "question": "What is the purpose of @Input in Angular?",
+    "options": [
+      "To bind data from parent to child",
+      "To define a route",
+      "To create a service",
+      "To bind data from child to parent"
+    ],
+    "answer": "To bind data from parent to child"
+  },
+  {
+    "question": "What is the purpose of @Output in Angular?",
+    "options": [
+      "To emit data from child to parent",
+      "To decorate a service",
+      "To define a module",
+      "To bind a directive"
+    ],
+    "answer": "To emit data from child to parent"
+  },
+  {
+    "question": "Which lifecycle hook is called when any data-bound property of a directive changes?",
+    "options": [
+      "ngOnInit",
+      "ngAfterContentInit",
+      "ngDoCheck",
+      "ngOnChanges"
+    ],
+    "answer": "ngOnChanges"
+  },
+  {
+    "question": "What is lazy loading in Angular?",
+    "options": [
+      "Delaying API calls",
+      "Loading modules on demand",
+      "Rendering components lazily",
+      "Loading images slowly"
+    ],
+    "answer": "Loading modules on demand"
+  },
+  {
+    "question": "Which Angular feature is used to implement lazy loading?",
+    "options": [
+      "ngIf directive",
+      "ngSwitch",
+      "ngStyle",
+      "loadChildren in routes"
+    ],
+    "answer": "loadChildren in routes"
+  },
+  {
+    "question": "What does @ViewChild allow you to do?",
+    "options": [
+      "Access a child component",
+      "Bind data to a view",
+      "Render a template",
+      "Create a service"
+    ],
+    "answer": "Access a child component"
+  },
+  {
+    "question": "What is the correct way to define a route in Angular?",
+    "options": [
+      "{ url: \"home\", view: HomeComponent }",
+      "{ path: \"home\", component: HomeComponent }",
+      "{ name: \"home\", use: HomeComponent }",
+      "{ route: \"home\", comp: HomeComponent }"
+    ],
+    "answer": "{ path: \"home\", component: HomeComponent }"
+  },
+  {
+    "question": "Which lifecycle hook is useful for manual change detection or custom logic during checks?",
+    "options": [
+      "ngOnInit",
+      "ngAfterViewInit",
+      "ngOnDestroy",
+      "ngDoCheck"
+    ],
+    "answer": "ngDoCheck"
+  },
+  {
+    "question": "What is a signal in Angular?",
+    "options": [
+      "A module loader",
+      "A reactive state primitive",
+      "A routing event",
+      "A lifecycle hook"
+    ],
+    "answer": "A reactive state primitive"
+  },
+  {
+    "question": "Which function is used to create a signal in Angular?",
+    "options": [
+      "signal()",
+      "createSignal()",
+      "useSignal()",
+      "new Signal()"
+    ],
+    "answer": "signal()"
+  },
+  {
+    "question": "How do you read the value of a signal in Angular?",
+    "options": [
+      "signal()",
+      "signal.value",
+      "signal.get()",
+      "signal.read()"
+    ],
+    "answer": "signal()"
+  },
+  {
+    "question": "Which hook automatically tracks signals in templates?",
+    "options": [
+      "Angular templates",
+      "ChangeDetectorRef",
+      "Zone.js",
+      "SignalWatcher"
+    ],
+    "answer": "Angular templates"
+  },
+  {
+    "question": "What is the main advantage of using signals in Angular?",
+    "options": [
+      "Faster and finer-grained reactivity",
+      "More HTTP support",
+      "Improved DI",
+      "Global state sharing"
+    ],
+    "answer": "Faster and finer-grained reactivity"
+  },
+  {
+    "question": "What is Server-Side Rendering (SSR) in Angular?",
+    "options": [
+      "Rendering app HTML on server before sending to browser",
+      "Rendering directly in the browser",
+      "Converting app to mobile view",
+      "Only rendering admin routes"
+    ],
+    "answer": "Rendering app HTML on server before sending to browser"
+  },
+  {
+    "question": "Which Angular package supports SSR?",
+    "options": [
+      "@angular/forms",
+      "@angular/platform-server",
+      "@angular/core",
+      "@angular/router"
+    ],
+    "answer": "@angular/platform-server"
+  },
+  {
+    "question": "What is a key benefit of using SSR?",
+    "options": [
+      "Faster initial page load & SEO support",
+      "Easier routing",
+      "Offline support",
+      "Better WebSocket handling"
+    ],
+    "answer": "Faster initial page load & SEO support"
+  },
+  {
+    "question": "Which rendering technique is better for dynamic dashboards with frequent updates?",
+    "options": [
+      "Static Site Generation",
+      "Client-Side Rendering (CSR)",
+      "Markdown Rendering",
+      "Server-Side Rendering (SSR)"
+    ],
+    "answer": "Client-Side Rendering (CSR)"
+  },
+  {
+    "question": "Which Angular tool can help create a Universal (SSR) app?",
+    "options": [
+      "ng add @nguniversal/express-engine",
+      "ng deploy universal",
+      "ng add angular-server",
+      "ng generate ssr-app"
+    ],
+    "answer": "ng add @nguniversal/express-engine"
+  },
+  {
+    "question": "What is the purpose of the @Injectable decorator in Angular?",
+    "options": [
+      "To define a service that can be injected",
+      "To create a pipe",
+      "To define a directive",
+      "To create a component"
+    ],
+    "answer": "To define a service that can be injected"
+  }
+]
