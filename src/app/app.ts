@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  standalone: true
+  standalone: true,
 })
-export class App {  
+export class App {
   currentQuestionIndex = 0;
   questions: any[] = [];
   selectedOption: string = '';
@@ -28,22 +29,21 @@ export class App {
   randomQuestionCount = 40;
   IsPassed = false;
 
-  constructor(private cdr: ChangeDetectorRef,private http: HttpClient) {}
+  constructor(private cdr: ChangeDetectorRef, private http: HttpClient) {}
 
-    ngOnInit() {
-    this.http.get<any[]>('questions.json').subscribe(data => {
-    this.questions = this.getRandomQuestions(data, this.randomQuestionCount);
+  ngOnInit() {
+    this.http.get<any[]>('questions.json').subscribe((data) => {
+      this.questions = this.getRandomQuestions(data, this.randomQuestionCount);
       this.startTimer();
     });
   }
 
-  
   getRandomQuestions(allQuestions: any[], count: number): any[] {
     const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
   }
 
-  restartQuiz(){
+  restartQuiz() {
     this.currentQuestionIndex = 0;
     this.selectedOption = '';
     this.isAnswered = false;
@@ -58,21 +58,21 @@ export class App {
     this.IsPassed = false;
   }
 
-startTimer() {
-  this.isTimerActive = true;
-  this.timer = setInterval(() => {
-    if (this.timeLeft > 0) {
-      this.timeLeft--;
-      if (this.isTimerActive) {
-        this.playTick();
+  startTimer() {
+    this.isTimerActive = true;
+    this.timer = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+        if (this.isTimerActive) {
+          this.playTick();
+        }
+        this.cdr.detectChanges();
+      } else {
+        this.finishQuiz();
+        clearInterval(this.timer);
       }
-      this.cdr.detectChanges();
-    } else {
-      this.finishQuiz();
-      clearInterval(this.timer);
-    }
-  }, 1000);
-}
+    }, 1000);
+  }
 
   playTick() {
     if (this.showResult) return; // don't play tick if quiz ended
@@ -80,7 +80,6 @@ startTimer() {
     this.tickSound.play().catch(() => {});
   }
 
-  
   get percentageScore(): number {
     return (this.score / this.questions.length) * 100;
   }
@@ -91,7 +90,8 @@ startTimer() {
 
   checkAnswer(option: string) {
     this.selectedOption = option;
-    this.isCorrect = this.questions[this.currentQuestionIndex].answer === option;
+    this.isCorrect =
+      this.questions[this.currentQuestionIndex].answer === option;
     this.isAnswered = true;
     if (this.isCorrect) {
       this.score++;
@@ -126,19 +126,19 @@ startTimer() {
     }
   }
 
-finishQuiz() {
-  this.isTimerActive = false;
-  clearInterval(this.timer);
-  this.showResult = true;
-  this.stopTick();
-  this.playFinish();
-  if ((this.score / this.questions.length) * 100 > 50) {
-    this.IsPassed = true;
+  finishQuiz() {
+    this.isTimerActive = false;
+    clearInterval(this.timer);
+    this.showResult = true;
+    this.stopTick();
+    this.playFinish();
+    if ((this.score / this.questions.length) * 100 > 50) {
+      this.IsPassed = true;
+    }
   }
-}
 
-stopTick() {
-  this.tickSound.pause();
-  this.tickSound.currentTime = 0;
-}
+  stopTick() {
+    this.tickSound.pause();
+    this.tickSound.currentTime = 0;
+  }
 }
