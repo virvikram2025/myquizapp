@@ -28,6 +28,6 @@ export class Signup {
       password: this.password,
     });
     alert('Signup successful! Please login.');
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 }
