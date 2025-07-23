@@ -1,59 +1,69 @@
 <div class="quiz-container" *ngIf="!showResult && questions.length > 0">
   <div class="question-header">
-    QUESTION {{ currentQuestionIndex + 1 }}/{{ questions.length }} | Time Left: {{ timeLeft }}s
+    QUESTION {{ currentQuestionIndex + 1 }}/{{ questions.length }} | Time Left:
+    {{ timeLeft }}s
   </div>
   <div class="question-section">
-  <p class="question">{{ questions[currentQuestionIndex].question }}</p>
+    <p class="question">{{ questions[currentQuestionIndex].question }}</p>
     <div class="options">
       <ul class="options">
-      <li *ngFor="let opt of questions[currentQuestionIndex].options"
-              [ngClass]="{
+        <li
+          *ngFor="let opt of questions[currentQuestionIndex].options"
+          [ngClass]="{
                 'correct': isAnswered && opt === questions[currentQuestionIndex].answer,
                 'wrong': isAnswered && opt === selectedOption && !isCorrect
               }"
-              (click)="!isAnswered && checkAnswer(opt)">
-        {{ opt }}
-            </li>
-            </ul>
+          (click)="!isAnswered && checkAnswer(opt)"
+        >
+          {{ opt }}
+        </li>
+      </ul>
     </div>
   </div>
-  <button class="next-btn" *ngIf="isAnswered && currentQuestionIndex < questions.length" (click)="nextQuestion()">
+  <button
+    class="next-btn"
+    *ngIf="isAnswered && currentQuestionIndex < questions.length"
+    (click)="nextQuestion()"
+  >
     NEXT QUESTION
   </button>
- 
-  <button class="quit-btn" (click)="finishQuiz()" style="margin-left:5px;">Close</button>
+
+  <button class="quit-btn" (click)="finishQuiz()" style="margin-left: 5px">
+    Close
+  </button>
 </div>
 <div class="quiz-container" *ngIf="showResult">
-          <div class="result_page">
-            <div class="result_inner">
-                <div class="result_inner2">
-                    <h2>Result Summary</h2>
-                    <div class="u_result">
-                        <div class="u_score">Your Score: {{ score }} / {{ questions.length }}</div>
-                        <div class="u_prcnt">
-                            {{ percentageScore | number:'1.0-2' }}%
-                        </div>
-                    </div>
-                    <div class="p_result">
-                        <div class="p_score">Passing Score: </div>
-                        <div class="p_prcnt">
-                            50%
-                        </div>
-                    </div>
-                    <div *ngIf="!IsPassed" class="timer_inactive">
-                        <div class="pass_check">
-                            <i class="fa-solid fa-xmark"></i>You did not Pass
-                        </div>
-                        <div class="result_msg">
-                            Better Luck Next Time!
-                        </div>                        
-                        <button class="btn btn-success" (click)="restartQuiz()">Restart</button>
-                    </div>
-                    <div *ngIf="IsPassed" class="timer_inactive">
-                        <i class="fa-solid fa-clock"></i> Congratulations! You passed the quiz with a score of {{ percentageScore | number:'1.0-2' }}%
-                        <button class="btn btn-info mt-2" (click)="restartQuiz()">Let's Do Better</button>
-                    </div>
-                </div>
-            </div>
+  <div class="result_page">
+    <div class="result_inner">
+      <div class="result_inner2">
+        <h2>Result Summary</h2>
+        <div class="u_result">
+          <div class="u_score">
+            Your Score: {{ score }} / {{ questions.length }}
+          </div>
+          <div class="u_prcnt">{{ percentageScore | number:'1.0-2' }}%</div>
         </div>
+        <div class="p_result">
+          <div class="p_score">Passing Score:</div>
+          <div class="p_prcnt">50%</div>
+        </div>
+        <div *ngIf="!IsPassed" class="timer_inactive">
+          <div class="pass_check">
+            <i class="fa-solid fa-xmark"></i>You did not Pass
+          </div>
+          <div class="result_msg">Better Luck Next Time!</div>
+          <button class="btn btn-success" (click)="restartQuiz()">
+            Restart
+          </button>
+        </div>
+        <div *ngIf="IsPassed" class="timer_inactive">
+          <i class="fa-solid fa-clock"></i> Congratulations! You passed the quiz
+          with a score of {{ percentageScore | number:'1.0-2' }}%
+          <button class="btn btn-info mt-2" (click)="restartQuiz()">
+            Let's Do Better
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
