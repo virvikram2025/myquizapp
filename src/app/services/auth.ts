@@ -37,6 +37,7 @@ export class Auth {
       user.loggedIn = '0';
       localStorage.setItem('user', JSON.stringify(user));
     }
+    this.loggedIn$.next(false);
     this.router.navigate(['/landing']);
   }
 
