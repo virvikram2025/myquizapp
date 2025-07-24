@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-quiz',
@@ -29,26 +30,32 @@ export class Quiz {
   IsPassed = false;
   userName: string = '';
 
-  constructor(private router:Router, private cdr: ChangeDetectorRef, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     const user = localStorage.getItem('user');
     if (user) {
       const userData = JSON.parse(user);
-      if (userData.loggedIn !== '1') {        
+      if (userData.loggedIn !== '1') {
         this.router.navigate(['/login']);
         return;
-      }         
+      }
       this.userName = userData.name;
-      this.restartQuiz(); 
-          this.http.get<any[]>('questions.json').subscribe((data) => {
-      this.questions = this.getRandomQuestions(data, this.randomQuestionCount);
-      this.startTimer();
-         });
-    }   
-    else {
+      this.restartQuiz();
+      this.http.get<any[]>('questions.json').subscribe((data) => {
+        this.questions = this.getRandomQuestions(
+          data,
+          this.randomQuestionCount
+        );
+        this.startTimer();
+      });
+    } else {
       this.router.navigate(['/login']);
-    } 
+    }
   }
 
   getRandomQuestions(allQuestions: any[], count: number): any[] {
@@ -175,9 +182,5 @@ export class Quiz {
     clearInterval(this.timer);
     this.stopTick();
     this.router.navigate(['/login']);
-  }
-    @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: BeforeUnloadEvent) {
-    $event.returnValue = 'Are you sure you want to leave this site?';
   }
 }

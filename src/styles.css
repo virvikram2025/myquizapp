@@ -39,6 +39,7 @@
       .auth-buttons {
         display: flex;
         gap: 1rem;
+        align-items: center;
       }
 
       .btn {
@@ -85,11 +86,11 @@
 
       .hero {
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
       }
 
       .hero h1 {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         font-weight: 800;
         color: white;
         margin-bottom: 1rem;
@@ -98,7 +99,7 @@
       }
 
       .hero p {
-        font-size: 1.3rem;
+        font-size: 1rem;
         color: rgba(255, 255, 255, 0.9);
         margin-bottom: 2rem;
         max-width: 600px;

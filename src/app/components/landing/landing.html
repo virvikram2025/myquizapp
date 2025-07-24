@@ -1,12 +1,3 @@
-<!-- Navigation Header -->
-<nav class="navbar">
-  <div class="logo">QuizMaster</div>
-  <div class="auth-buttons">
-    <a href="/login" class="btn btn-login">Login</a>
-    <a href="/signup" class="btn btn-signup">Sign Up</a>
-  </div>
-</nav>
-
 <!-- Main Content -->
 <div class="container">
   <div class="hero">
@@ -20,7 +11,11 @@
 
   <!-- Quiz Cards Grid -->
   <div class="quiz-grid">
-    <div class="quiz-card angular-card" style="--delay: 0.4s"  (click)="startQuiz()">
+    <div
+      class="quiz-card angular-card"
+      style="--delay: 0.4s"
+      (click)="startQuiz()"
+    >
       <div
         class="quiz-icon"
         style="background: linear-gradient(45deg, #dd0031, #c3002f)"

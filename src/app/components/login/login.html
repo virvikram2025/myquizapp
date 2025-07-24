@@ -1,23 +1,37 @@
-
-<button class="logout-btn" (click)="gohome()">Home</button>
+<!-- <button class="logout-btn" (click)="gohome()">Home</button> -->
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-form">
   <h2>Login</h2>
   <div class="form-group">
     <label>Email:</label>
-    <input type="email" name="email" ngModel required #emailRef="ngModel" placeholder="Enter Username"/>
-    <div *ngIf="emailRef.invalid && emailRef.touched" style="color:red">
+    <input
+      type="email"
+      name="email"
+      ngModel
+      required
+      #emailRef="ngModel"
+      placeholder="Enter Username"
+    />
+    <div *ngIf="emailRef.invalid && emailRef.touched" style="color: red">
       Email is required and must be valid.
     </div>
   </div>
   <div class="form-group">
     <label>Password:</label>
-    <input type="password" name="password" ngModel required minlength="5" #passwordRef="ngModel" placeholder="Enter Password"/>
-    <div *ngIf="passwordRef.invalid && passwordRef.touched" style="color:red">
+    <input
+      type="password"
+      name="password"
+      ngModel
+      required
+      minlength="5"
+      #passwordRef="ngModel"
+      placeholder="Enter Password"
+    />
+    <div *ngIf="passwordRef.invalid && passwordRef.touched" style="color: red">
       Password is required (min 5 characters).
     </div>
   </div>
   <button type="submit">Login</button>
-    <p class="switch">
+  <p class="switch">
     Don't have an account?
     <a routerLink="/signup">Sign up here</a>
   </p>

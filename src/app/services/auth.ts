@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
+  private loggedIn$ = new BehaviorSubject<boolean>(this.isAuthenticated());
   constructor(private router: Router) {}
 
   signup(user: any) {
@@ -22,6 +24,7 @@ export class Auth {
     if (isValid) {
       user.loggedIn = '1';
       localStorage.setItem('user', JSON.stringify(user));
+      this.loggedIn$.next(true);
     }
 
     return isValid;
@@ -34,7 +37,7 @@ export class Auth {
       user.loggedIn = '0';
       localStorage.setItem('user', JSON.stringify(user));
     }
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/landing']);
   }
 
   isAuthenticated(): boolean {
@@ -43,6 +46,9 @@ export class Auth {
 
     const user = JSON.parse(storedUser);
     return user.loggedIn === '1';
+  }
+  getLoginStatus() {
+    return this.loggedIn$.asObservable();
   }
 }
 

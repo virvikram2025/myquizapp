@@ -1,0 +1,18 @@
+<!-- Navigation Header -->
+<nav class="navbar">
+  <div class="logo">
+    <a routerLink="/landing">QuizMaster</a>
+  </div>
+
+  <div class="auth-buttons">
+    <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+      <a routerLink="/login" class="btn btn-login">Login</a>
+      <a routerLink="/signup" class="btn btn-signup">Sign Up</a>
+    </ng-container>
+
+    <ng-template #loggedInBlock>
+      <span class="welcome">Welcome, {{ userName }}</span>
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </ng-template>
+  </div>
+</nav>

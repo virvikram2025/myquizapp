@@ -1,11 +1,16 @@
 .signup-form {
-  max-width: 400px;
-  margin: 40px auto;
+  /* max-width: 400px;
+  margin: 40px auto; */
   padding: 30px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif;
+  position: absolute;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
   h3 {
     text-align: center;
