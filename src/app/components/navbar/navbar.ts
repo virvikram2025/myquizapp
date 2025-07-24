@@ -12,6 +12,7 @@ import { Auth } from '../../services/auth';
 export class Navbar implements OnInit {
   isLoggedIn = false;
   userName = '';
+  isAdmin = false;
 
   constructor(private router: Router, private auth: Auth) {}
 
@@ -19,7 +20,8 @@ export class Navbar implements OnInit {
     this.auth.getLoginStatus().subscribe((status) => {
       this.isLoggedIn = status;
       const user = JSON.parse(localStorage.getItem('user') || '{}');
-      this.userName = user.name || 'User';
+      this.userName = user.name || 'Admin';
+      this.isAdmin = user.IsAdmin === '1';
     });
 
     // const user = localStorage.getItem('user');

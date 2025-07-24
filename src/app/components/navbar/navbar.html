@@ -1,7 +1,13 @@
 <!-- Navigation Header -->
 <nav class="navbar">
   <div class="logo">
+    <ng-container *ngIf="!isAdmin; else headerBlock">
+    <a routerLink="/landing">Online Quiz</a>
+  </ng-container>
+
+  <ng-template #headerBlock>
     <a routerLink="/landing">QuizMaster</a>
+  </ng-template>
   </div>
 
   <div class="auth-buttons">
