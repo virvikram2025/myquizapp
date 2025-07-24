@@ -1,0 +1,69 @@
+[
+  {
+    "quizId": "1",
+    "title": "Angular Quiz",
+    "description": "Test your knowledge of Angular framework, TypeScript, and modern web development patterns.",
+    "questions": 25,
+    "duration": "30min",
+    "difficulty": "High",
+    "color": "linear-gradient(45deg, #dd0031, #c3002f)",
+    "initial": "A",
+    "delay": "0.4s"
+  },
+  {
+    "quizId": "2",
+    "title": "React Quiz",
+    "description": "Master React concepts including hooks, state management, and component lifecycle.",
+    "questions": 30,
+    "duration": "35min",
+    "difficulty": "Medium",
+    "color": "linear-gradient(45deg, #61dafb, #21a9c7)",
+    "initial": "R",
+    "delay": "0.5s"
+  },
+  {
+    "quizId": "3",
+    "title": "Python Quiz",
+    "description": "Explore Python fundamentals, data structures, OOP concepts, and popular libraries.",
+    "questions": 35,
+    "duration": "40min",
+    "difficulty": "Low",
+    "color": "linear-gradient(45deg, #3776ab, #2d5d8b)",
+    "initial": "Py",
+    "delay": "0.6s"
+  },
+  {
+    "quizId": "4",
+    "title": "JavaScript Quiz",
+    "description": "Deep dive into JavaScript ES6+, async programming, and modern development practices.",
+    "questions": 28,
+    "duration": "32min",
+    "difficulty": "Low",
+    "color": "linear-gradient(45deg, #f7df1e, #e8c547)",
+    "initial": "JS",
+    "delay": "0.7s",
+    "textColor": "#333"
+  },
+  {
+    "quizId": "5",
+    "title": "Node.js Quiz",
+    "description": "Challenge your backend skills with Node.js, Express, and server-side development.",
+    "questions": 22,
+    "duration": "28min",
+    "difficulty": "Low",
+    "color": "linear-gradient(45deg, #339933, #2d7a2d)",
+    "initial": "N",
+    "delay": "0.8s"
+  },
+  {
+    "quizId": "6",
+    "title": "Vue.js Quiz",
+    "description": "Test your Vue.js knowledge including composition API, reactivity, and ecosystem tools.",
+    "questions": 20,
+    "duration": "25min",
+    "difficulty": "High",
+    "color": "linear-gradient(45deg, #4fc08d, #42a478)",
+    "initial": "V",
+    "delay": "0.9s"
+  }
+]
