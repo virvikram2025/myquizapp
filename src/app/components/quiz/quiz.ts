@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
@@ -165,10 +165,19 @@ export class Quiz {
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   }
   logout() {
-    localStorage.removeItem('user');
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      user.loggedIn = '0';
+      localStorage.setItem('user', JSON.stringify(user));
+    }
     this.isTimerActive = false;
     clearInterval(this.timer);
     this.stopTick();
     this.router.navigate(['/login']);
+  }
+    @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: BeforeUnloadEvent) {
+    $event.returnValue = 'Are you sure you want to leave this site?';
   }
 }
