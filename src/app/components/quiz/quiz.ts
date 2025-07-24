@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -27,14 +27,28 @@ export class Quiz {
   isTimerActive = true;
   randomQuestionCount = 40;
   IsPassed = false;
+  userName: string = '';
 
-  constructor(private cdr: ChangeDetectorRef, private http: HttpClient) {}
+  constructor(private router:Router, private cdr: ChangeDetectorRef, private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<any[]>('questions.json').subscribe((data) => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userData = JSON.parse(user);
+      if (userData.loggedIn !== '1') {        
+        this.router.navigate(['/login']);
+        return;
+      }         
+      this.userName = userData.name;
+      this.restartQuiz(); 
+          this.http.get<any[]>('questions.json').subscribe((data) => {
       this.questions = this.getRandomQuestions(data, this.randomQuestionCount);
       this.startTimer();
-    });
+         });
+    }   
+    else {
+      this.router.navigate(['/login']);
+    } 
   }
 
   getRandomQuestions(allQuestions: any[], count: number): any[] {
@@ -149,5 +163,12 @@ export class Quiz {
     const pad = (n: number) => n.toString().padStart(2, '0');
 
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  }
+  logout() {
+    localStorage.removeItem('user');
+    this.isTimerActive = false;
+    clearInterval(this.timer);
+    this.stopTick();
+    this.router.navigate(['/login']);
   }
 }

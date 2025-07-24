@@ -10,6 +10,7 @@ import { Quiz } from './components/quiz/quiz';
 export const routes: Routes = [
   // { path: '', component: App },
   { path: '', component: Landing },
+  { path: 'landing', component: Landing },
   { path: 'signup', component: Signup },
   { path: 'login', component: Login },
   { path: 'logout', component: Logout },

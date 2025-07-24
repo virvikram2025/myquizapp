@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -8,4 +8,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
-export class Landing {}
+export class Landing {
+  constructor(private router: Router) {}
+
+  startQuiz() {        
+    this.router.navigate(['/quiz']);
+  }
+}

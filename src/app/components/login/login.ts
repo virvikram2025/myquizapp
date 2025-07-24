@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,27 +12,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.css',
 })
 export class Login {
-  email = '';
-  password = '';
-
+  @ViewChild('passwordRef') passwordField!: NgModel; // ViewChild to access the password field  
+  
   constructor(private auth: Auth, private router: Router) {}
-
-  login() {
-    if (!this.email || !this.password) {
-      alert('All fields are required.');
-      return;
-    } else if (!this.email) {
-      alert('Email is required.');
-      return;
-    } else if (!this.password) {
-      alert('Password is required.');
+  login(form: any) {
+    if (form.invalid) {
+      console.log('Form is invalid');
       return;
     }
-    const success = this.auth.login(this.email, this.password);
-    if (success) {
-      this.router.navigate(['/quiz']);
-    } else {
-      alert('Invalid credentials');
+    else{
+      const email = form.value.email; //accessing the email value from the form      
+      const password = this.passwordField;
+      const success = this.auth.login(email, password.value);
+      if (success) {
+        this.router.navigate(['/quiz']);
+      } else {
+        alert('Invalid credentials');
+      }
     }
+  }
+  gohome(){
+    this.router.navigate(['/landing']);
   }
 }

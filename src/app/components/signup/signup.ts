@@ -1,33 +1,42 @@
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-signup',
-  imports: [FormsModule, RouterModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
-export class Signup {
-  name = '';
-  email = '';
-  password = '';
+export class Signup implements OnInit {
 
-  constructor(private auth: Auth, private router: Router) {}
+  signupForm!: FormGroup; // The exclamation mark indicates that this property will be initialized later
+  constructor(private auth:Auth, private fb: FormBuilder, private router: Router) {}
 
+  ngOnInit() {
+    this.signupForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
   signup() {
-    if (!this.name || !this.email || !this.password) {
-      alert('All fields are required.');
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched(); //it marks all controls inside a form as touched
       return;
     }
-    this.auth.signup({
-      name: this.name,
-      email: this.email,
-      password: this.password,
+    else {
+          this.auth.signup({
+        name: this.signupForm.value.name,
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.password,
     });
-    alert('Signup successful! Please login.');
-    this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
+    }
+  }
+  gohome(){
+    this.router.navigate(['/landing']);
   }
 }
