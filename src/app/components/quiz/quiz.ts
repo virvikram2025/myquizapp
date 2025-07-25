@@ -77,22 +77,45 @@ export class Quiz {
     this.cdr.detectChanges();
     this.IsPassed = false;
   }
-
   startTimer() {
+    if (this.timer) {
+      clearInterval(this.timer); // ✅ prevent overlapping intervals
+      this.timer = null;
+    }
+
     this.isTimerActive = true;
+
     this.timer = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
+
         if (this.isTimerActive) {
           this.playTick();
         }
+
         this.cdr.detectChanges();
       } else {
         this.finishQuiz();
         clearInterval(this.timer);
+        this.timer = null;
       }
     }, 1000);
   }
+  // startTimer() {
+  //   this.isTimerActive = true;
+  //   this.timer = setInterval(() => {
+  //     if (this.timeLeft > 0) {
+  //       this.timeLeft--;
+  //       if (this.isTimerActive) {
+  //         this.playTick();
+  //       }
+  //       this.cdr.detectChanges();
+  //     } else {
+  //       this.finishQuiz();
+  //       clearInterval(this.timer);
+  //     }
+  //   }, 1000);
+  // }
 
   playTick() {
     if (this.showResult) return; // don't play tick if quiz ended
@@ -182,5 +205,9 @@ export class Quiz {
     clearInterval(this.timer);
     this.stopTick();
     this.router.navigate(['/login']);
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: BeforeUnloadEvent) {
+    $event.returnValue = 'Are you sure you want to leave this site?';
   }
 }

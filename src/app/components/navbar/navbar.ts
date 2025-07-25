@@ -35,8 +35,4 @@ export class Navbar implements OnInit {
   logout(): void {
     this.auth.logout();
   }
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: BeforeUnloadEvent) {
-    $event.returnValue = 'Are you sure you want to leave this site?';
-  }
 }
