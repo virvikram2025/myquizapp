@@ -35,7 +35,7 @@ export class Signup implements OnInit {
     if (this.signupForm.invalid) {
       this.signupForm.markAllAsTouched(); //it marks all controls inside a form as touched
       return;
-    } else {
+    } else {      
       this.auth.signup({
         name: this.signupForm.value.name,
         email: this.signupForm.value.email,
