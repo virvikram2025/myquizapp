@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
@@ -20,6 +20,11 @@ export class Login {
   @ViewChild('passwordRef') passwordField!: NgModel; // ViewChild to access the password field
 
   constructor(private auth: Auth, private router: Router) {}
+  ngOnInit() {
+    if (this.auth.isAuthenticated()) {
+      this.router.navigate(['/landing']);
+    }
+  }
   login(form: any) {
     if (form.invalid) {
       console.log('Form is invalid');
