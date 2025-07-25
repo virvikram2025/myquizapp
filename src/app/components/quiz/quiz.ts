@@ -39,13 +39,13 @@ export class Quiz {
   ngOnInit() {
     const user = localStorage.getItem('user');
     if (user) {
-       const userData = JSON.parse(localStorage.getItem('user') || '{}');
+      const userData = JSON.parse(localStorage.getItem('user') || '{}');
 
       // if (userData.loggedIn !== '1') {
       //   this.router.navigate(['/login']);
       // }
       //UserActive
-      if (localStorage.getItem("UserActive") !== '1') {
+      if (localStorage.getItem('UserActive') !== '1') {
         this.router.navigate(['/login']);
       }
       this.userName = userData.name;
@@ -73,7 +73,7 @@ export class Quiz {
     this.isAnswered = false;
     this.isCorrect = false;
     this.score = 0;
-    this.timeLeft = 320; // reset timer
+    this.timeLeft = 1800; // reset timer
     this.showResult = false;
     this.isTimerActive = true;
     this.startTimer();
