@@ -37,8 +37,22 @@ export class Auth {
   }
 
   signup(user: any) {
-    const userWithDefaults = { ...user, loggedIn: '0', IsAdmin: '0' };
-    localStorage.setItem('user', JSON.stringify(userWithDefaults));
+      const userWithFlag = { ...user, loggedIn: '0' };
+
+      let users = [];
+      const existing = localStorage.getItem('user');
+
+      try {
+        const parsed = existing ? JSON.parse(existing) : [];
+        users = Array.isArray(parsed) ? parsed : [];
+      } 
+      catch (err) 
+      {
+        console.warn('Failed to parse existing users:', err);
+        users = [];
+      }
+      users.push(userWithFlag);
+      localStorage.setItem('user', JSON.stringify(users));
   }
 
   login(email: string, password: string): boolean {
@@ -57,17 +71,40 @@ export class Auth {
       return true;
     }
 
-    const user = this.getStoredUser();
-    if (user && user.email === email && user.password === password) {
-      user.loggedIn = '1';
-      user.IsAdmin = '0';
-      localStorage.setItem('user', JSON.stringify(user));
-      this.loggedIn$.next(true);
-      this.isAdmin$.next(false);
-      this.userName$.next(this.extractUserName(user));
-      return true;
-    }
+const existing = localStorage.getItem('user');
+  let users = [];
 
+  try {
+    const parsed = existing ? JSON.parse(existing) : [];
+    users = Array.isArray(parsed) ? parsed : [];
+  } catch {
+    console.error('Failed to parse stored users');
+    return false;
+  }
+
+  // Find matching user
+  const matchedUser = users.find(u => u.email === email && u.password === password);
+
+  if (matchedUser) {
+    matchedUser.loggedIn = '1';
+    matchedUser.IsAdmin = '0'; // Set as needed
+
+    // Optional: update the array to reflect logged-in status
+    const updatedUsers = users.map(u =>
+      u.email === matchedUser.email ? matchedUser : u
+    );
+    localStorage.setItem('user', JSON.stringify(updatedUsers));
+
+    // // Store logged-in user separately
+    // localStorage.setItem('user', JSON.stringify(matchedUser));
+
+    // Emit login status
+    this.loggedIn$.next(true);
+    this.isAdmin$.next(false);
+    this.userName$.next(this.extractUserName(matchedUser));
+
+    return true;
+  }
     return false;
   }
 
