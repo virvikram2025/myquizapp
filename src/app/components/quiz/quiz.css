@@ -76,21 +76,21 @@ font-size: 20px;
 }
 
 .next-btn {
-  background-color: #e53935;
-  color: white;
-}
-
-.next-btn:hover {
-  background-color: #c62828;
-}
-
-.quit-btn {
   background-color: #3f51b5;
   color: white;
 }
 
-.quit-btn:hover {
+.next-btn:hover {
   background-color: #303f9f;
+}
+
+.quit-btn {
+  background-color: #e53935;
+  color: white;
+}
+
+.quit-btn:hover {
+  background-color: #c62828;
 }
 
 /* Timer */

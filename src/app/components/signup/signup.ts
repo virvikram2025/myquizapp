@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -12,7 +13,7 @@ import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-signup',
-  imports: [CommonModule, ReactiveFormsModule, Navbar],
+  imports: [CommonModule, ReactiveFormsModule, Navbar, RouterModule],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
@@ -35,7 +36,7 @@ export class Signup implements OnInit {
     if (this.signupForm.invalid) {
       this.signupForm.markAllAsTouched(); //it marks all controls inside a form as touched
       return;
-    } else {      
+    } else {
       this.auth.signup({
         name: this.signupForm.value.name,
         email: this.signupForm.value.email,

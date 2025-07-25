@@ -57,4 +57,18 @@
       background: #303f9f;
     }
   }
+    .switch {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

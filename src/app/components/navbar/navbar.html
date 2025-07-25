@@ -7,11 +7,13 @@
     </ng-container>
 
     <ng-template #headerBlock>
-      <a routerLink="/landing">QuizMaster</a>
+      <a routerLink="/landing">Admin Quiz Master</a>
     </ng-template>
   </div>
 
   <div class="auth-buttons">
+    
+    
     <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
       <a routerLink="/login" class="btn btn-login">Login</a>
       <a routerLink="/signup" class="btn btn-signup">Sign Up</a>
@@ -19,6 +21,9 @@
 
     <ng-template #loggedInBlock>
       <span class="welcome">Welcome, {{ userName }}</span>
+      <ng-container *ngIf="isAdmin;">      
+      <a routerLink="/admin" class="btn btn-signup">Admin</a>
+    </ng-container>
       <button class="btn btn-danger" (click)="logout()">Logout</button>
     </ng-template>
   </div>
