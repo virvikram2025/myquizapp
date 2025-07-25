@@ -7,7 +7,7 @@ import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-quiz',
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, Navbar],
   templateUrl: './quiz.html',
   styleUrl: './quiz.css',
 })

@@ -1,0 +1,22 @@
+<!-- Admin Navigation Header -->
+<nav class="navbar">
+  <div class="logo">
+    <a routerLink="/landing">Admin</a>
+  </div>
+
+  <div class="auth-buttons">
+    <div>
+      <span class="welcome">Welcome, Admin</span>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </div>
+    <!-- <ng-container *ngIf="isLoggedIn$ | async; else guestBlock">
+      <span class="welcome">Welcome, {{ userName$ | async }}</span>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </ng-container> -->
+
+    <!-- <ng-template #guestBlock>
+      <a routerLink="/login" class="btn btn-login">Login</a>
+      <a routerLink="/signup" class="btn btn-signup">Sign Up</a>
+    </ng-template> -->
+  </div>
+</nav>

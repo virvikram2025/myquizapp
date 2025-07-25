@@ -5,10 +5,14 @@ import { Auth } from '../../services/auth';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Navbar } from '../navbar/navbar';
-
+import { environment } from '../../../environments/environment.development';
+interface AdminUser {
+  email: string;
+  password: string;
+}
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule, Navbar],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -20,17 +24,42 @@ export class Login {
     if (form.invalid) {
       console.log('Form is invalid');
       return;
+    }
+
+    const email = form.value.email;
+    const password = this.passwordField.value;
+
+    const storedAdmins = localStorage.getItem('adminUsers');
+    const adminUsers: AdminUser[] = storedAdmins
+      ? JSON.parse(storedAdmins)
+      : [];
+
+    const isAdmin = adminUsers.some(
+      (user) => user.email === email && user.password === password
+    );
+    if (isAdmin) {
+      console.log('Admin login success');
+      this.router.navigate(['/admin']);
+      return;
+    }
+    // Check if it's admin login
+    // if (email === environment.userid && password === environment.password) {
+    //   console.log('Admin login success');
+    //   this.router.navigate(['/admin']);
+    //   return;
+    // }
+
+    // Otherwise, check user login (from your Auth service)
+    const success = this.auth.login(email, password); // Adjust if async
+
+    if (success) {
+      console.log('User login success');
+      this.router.navigate(['/landing']);
     } else {
-      const email = form.value.email; //accessing the email value from the form
-      const password = this.passwordField;
-      const success = this.auth.login(email, password.value);
-      if (success) {
-        this.router.navigate(['/landing']);
-      } else {
-        alert('Invalid credentials');
-      }
+      alert('Invalid credentials');
     }
   }
+
   gohome() {
     this.router.navigate(['/landing']);
   }

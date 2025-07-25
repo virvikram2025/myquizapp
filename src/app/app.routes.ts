@@ -6,6 +6,8 @@ import { Errorpage } from './components/errorpage/errorpage';
 import { Landing } from './components/landing/landing';
 import { Quiz } from './components/quiz/quiz';
 import { Navbar } from './components/navbar/navbar';
+import { Admin } from './components/admin/admin';
+import { AdminNavbar } from './components/admin-navbar/admin-navbar';
 
 export const routes: Routes = [
   // { path: '', component: App },
@@ -14,6 +16,6 @@ export const routes: Routes = [
   { path: 'signup', component: Signup },
   { path: 'login', component: Login },
   { path: 'quiz', component: Quiz },
-  { path: 'navbar', component: Navbar },
+  { path: 'admin', component: Admin },
   { path: '**', component: Errorpage },
 ];

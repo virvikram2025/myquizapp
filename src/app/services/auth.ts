@@ -7,97 +7,100 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root',
 })
 export class Auth {
-  private loggedIn$ = new BehaviorSubject<boolean>(this.isAuthenticated());
-  constructor(private router: Router) {}
+  private loggedIn$ = new BehaviorSubject<boolean>(false);
+  private isAdmin$ = new BehaviorSubject<boolean>(false);
+  private userName$ = new BehaviorSubject<string>('');
 
-  signup(user: any) {
-    const userWithFlag = { ...user, loggedIn: '0' };
-    localStorage.setItem('user', JSON.stringify(userWithFlag));
+  constructor(private router: Router) {
+    const user = this.getStoredUser();
+    this.loggedIn$.next(user?.loggedIn === '1');
+    this.isAdmin$.next(user?.IsAdmin === '1');
+    this.userName$.next(user ? this.extractUserName(user) : '');
+  }
+  initFromStorage() {
+    const user = this.getStoredUser();
+    const isLoggedIn = user?.loggedIn === '1';
+    const isAdmin = user?.IsAdmin === '1';
+    const name = this.extractUserName(user);
+
+    this.loggedIn$.next(isLoggedIn);
+    this.isAdmin$.next(isAdmin);
+    this.userName$.next(name);
+  }
+  private getStoredUser() {
+    const stored = localStorage.getItem('user');
+    return stored ? JSON.parse(stored) : null;
   }
 
- login(email: string, password: string): boolean {
-    if (email == environment.userid && password == environment.password) {
-      const adminuser = {
+  private extractUserName(user: any): string {
+    return user?.IsAdmin === '1' ? 'Admin' : user?.email?.split('@')[0] || '';
+  }
+
+  signup(user: any) {
+    const userWithDefaults = { ...user, loggedIn: '0', IsAdmin: '0' };
+    localStorage.setItem('user', JSON.stringify(userWithDefaults));
+  }
+
+  login(email: string, password: string): boolean {
+    if (email === environment.userid && password === environment.password) {
+      // Admin login
+      const adminUser = {
         email: environment.userid,
         password: environment.password,
         IsAdmin: '1',
         loggedIn: '1',
       };
-      localStorage.setItem('user', JSON.stringify(adminuser));
+      localStorage.setItem('user', JSON.stringify(adminUser));
+      this.loggedIn$.next(true);
+      this.isAdmin$.next(true);
+      this.userName$.next('Admin');
       return true;
-    } else {
-      const storedUser = localStorage.getItem('user');
-      if (!storedUser) return false;
-      const user = JSON.parse(storedUser);
-      const isValid = user.email === email && user.password === password;
-      if (isValid) {
-        user.loggedIn = '1';
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('IsAdmin', '0');
-        return isValid;
-      } else {
-        return false;
-      }
     }
+
+    const user = this.getStoredUser();
+    if (user && user.email === email && user.password === password) {
+      user.loggedIn = '1';
+      user.IsAdmin = '0';
+      localStorage.setItem('user', JSON.stringify(user));
+      this.loggedIn$.next(true);
+      this.isAdmin$.next(false);
+      this.userName$.next(this.extractUserName(user));
+      return true;
+    }
+
+    return false;
   }
 
   logout() {
-    debugger
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
+    const user = this.getStoredUser();
+    if (user) {
       user.loggedIn = '0';
       localStorage.setItem('user', JSON.stringify(user));
     }
+
     this.loggedIn$.next(false);
+    this.isAdmin$.next(false);
+    this.userName$.next('');
     this.router.navigate(['/landing']);
   }
 
   isAuthenticated(): boolean {
-    const storedUser = localStorage.getItem('user');
-    if (!storedUser) return false;
-
-    const user = JSON.parse(storedUser);
-    return user.loggedIn === '1';
+    return this.loggedIn$.getValue();
   }
+
+  isAdmin(): boolean {
+    return this.isAdmin$.getValue();
+  }
+
   getLoginStatus() {
     return this.loggedIn$.asObservable();
   }
+
+  getAdminStatus() {
+    return this.isAdmin$.asObservable();
+  }
+
+  getUserName() {
+    return this.userName$.asObservable();
+  }
 }
-
-// import { Injectable } from '@angular/core';
-// import { Router } from '@angular/router';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class Auth {
-//   constructor(private router: Router) {}
-
-//   signup(user: any) {
-//     localStorage.setItem('user', JSON.stringify(user));
-//   }
-
-//   login(email: string, password: string): boolean {
-//     const storedUser = localStorage.getItem('user');
-//     if (!storedUser) return false;
-
-//     const user = JSON.parse(storedUser);
-//     const isValid = user.email === email && user.password === password;
-
-//     if (isValid) {
-//       localStorage.setItem('loggedIn', 'true');
-//     }
-
-//     return isValid;
-//   }
-
-//   logout() {
-//     localStorage.removeItem('loggedIn');
-//     this.router.navigate(['/auth/login']);
-//   }
-
-//   isAuthenticated(): boolean {
-//     return localStorage.getItem('loggedIn') === 'true';
-//   }
-// }

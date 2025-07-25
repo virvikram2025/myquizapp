@@ -6,7 +6,7 @@ import { Quiz } from '../../services/quiz';
 
 @Component({
   selector: 'app-landing',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, Navbar],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
