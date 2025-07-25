@@ -45,6 +45,7 @@ export class Login {
     if (isAdmin) {
       console.log('Admin login success');
       this.router.navigate(['/admin']);
+      localStorage.setItem('UserActive', '1');
       return;
     }
     // Check if it's admin login
@@ -59,7 +60,8 @@ export class Login {
 
     if (success) {
       console.log('User login success');
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/landing']);      
+      localStorage.setItem('UserActive', '1');
     } else {
       alert('Invalid credentials');
     }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Quiz } from '../../services/quiz';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-landing',
@@ -12,13 +13,18 @@ import { Quiz } from '../../services/quiz';
 })
 export class Landing {
   quizzes: any[] = [];
-  constructor(private router: Router, private quizService: Quiz) {}
+  constructor(private auth:Auth, private router: Router, private quizService: Quiz) {}
 
   ngOnInit(): void {
-    this.quizService.getQuizzes().subscribe((data) => {
-      this.quizzes = data;
-      console.log(this.quizzes);
-    });
+    debugger;
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/landing']);
+    }
+  
+    // this.quizService.getQuizzes().subscribe((data) => {
+    //   this.quizzes = data;
+    //   console.log(this.quizzes);
+    // });
   }
 
   startQuiz(): void {

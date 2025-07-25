@@ -13,7 +13,7 @@ export class Auth {
 
   constructor(private router: Router) {
     const user = this.getStoredUser();
-    this.loggedIn$.next(user?.loggedIn === '1');
+    this.loggedIn$.next(localStorage.getItem("UserActive") === '1');
     this.isAdmin$.next(user?.IsAdmin === '1');
     this.userName$.next(user ? this.extractUserName(user) : '');
   }
@@ -125,7 +125,8 @@ export class Auth {
     this.loggedIn$.next(false);
     this.isAdmin$.next(false);
     this.userName$.next('');
-    this.router.navigate(['/landing']);
+    this.router.navigate(['/landing']);    
+    localStorage.removeItem('UserActive');
   }
 
   isAuthenticated(): boolean {

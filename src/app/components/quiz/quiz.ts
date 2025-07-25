@@ -39,10 +39,14 @@ export class Quiz {
   ngOnInit() {
     const user = localStorage.getItem('user');
     if (user) {
-      const userData = JSON.parse(user);
-      if (userData.loggedIn !== '1') {
+       const userData = JSON.parse(localStorage.getItem('user') || '{}');
+
+      // if (userData.loggedIn !== '1') {
+      //   this.router.navigate(['/login']);
+      // }
+      //UserActive
+      if (localStorage.getItem("UserActive") !== '1') {
         this.router.navigate(['/login']);
-        return;
       }
       this.userName = userData.name;
       this.restartQuiz();
@@ -89,9 +93,9 @@ export class Quiz {
       if (this.timeLeft > 0) {
         this.timeLeft--;
 
-        if (this.isTimerActive) {
-          this.playTick();
-        }
+        // if (this.isTimerActive) {
+        //   this.playTick();
+        // }
 
         this.cdr.detectChanges();
       } else {
@@ -101,27 +105,12 @@ export class Quiz {
       }
     }, 1000);
   }
-  // startTimer() {
-  //   this.isTimerActive = true;
-  //   this.timer = setInterval(() => {
-  //     if (this.timeLeft > 0) {
-  //       this.timeLeft--;
-  //       if (this.isTimerActive) {
-  //         this.playTick();
-  //       }
-  //       this.cdr.detectChanges();
-  //     } else {
-  //       this.finishQuiz();
-  //       clearInterval(this.timer);
-  //     }
-  //   }, 1000);
-  // }
 
-  playTick() {
-    if (this.showResult) return; // don't play tick if quiz ended
-    this.tickSound.currentTime = 0;
-    this.tickSound.play().catch(() => {});
-  }
+  // playTick() {
+  //   if (this.showResult) return; // don't play tick if quiz ended
+  //   this.tickSound.currentTime = 0;
+  //   this.tickSound.play().catch(() => {});
+  // }
 
   get percentageScore(): number {
     return (this.score / this.questions.length) * 100;
@@ -205,9 +194,5 @@ export class Quiz {
     clearInterval(this.timer);
     this.stopTick();
     this.router.navigate(['/login']);
-  }
-  @HostListener('window:beforeunload', ['$event'])
-  unloadNotification($event: BeforeUnloadEvent) {
-    $event.returnValue = 'Are you sure you want to leave this site?';
   }
 }
