@@ -13,14 +13,18 @@ import { Auth } from '../../services/auth';
 })
 export class Landing {
   quizzes: any[] = [];
-  constructor(private auth:Auth, private router: Router, private quizService: Quiz) {}
+  constructor(
+    private auth: Auth,
+    private router: Router,
+    private quizService: Quiz
+  ) {}
 
   ngOnInit(): void {
-    debugger;
+    // debugger;
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/landing']);
     }
-  
+
     // this.quizService.getQuizzes().subscribe((data) => {
     //   this.quizzes = data;
     //   console.log(this.quizzes);

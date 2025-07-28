@@ -13,7 +13,7 @@ export class Auth {
 
   constructor(private router: Router) {
     const user = this.getStoredUser();
-    this.loggedIn$.next(localStorage.getItem("UserActive") === '1');
+    this.loggedIn$.next(localStorage.getItem('UserActive') === '1');
     this.isAdmin$.next(user?.IsAdmin === '1');
     this.userName$.next(user ? this.extractUserName(user) : '');
   }
@@ -37,30 +37,27 @@ export class Auth {
   }
 
   signup(user: any) {
-      const existingUserList = { ...user, loggedIn: '0', IsAdmin: '0' };
+    const existingUserList = { ...user, loggedIn: '0', IsAdmin: '0' };
 
-      let users = [];
-      const existing = localStorage.getItem('user');
+    let users = [];
+    const existing = localStorage.getItem('user');
 
-      try {
-        const parsed = existing ? JSON.parse(existing) : [];
-        users = Array.isArray(parsed) ? parsed : [];
-      } 
-      catch (err) 
-      {
-        console.warn('Failed to parse existing users:', err);
-        users = [];
-      }
-      const userExists = users.some((u: any) => u.email === user.email);
-      if (userExists) {
-        console.error('User already exists with this email.');        
-        this.router.navigate(['/signup']);
-        alert('User already exists with this email.');        
-      }
-      else{
-        users.push(existingUserList);
-        localStorage.setItem('user', JSON.stringify(users));
-      }
+    try {
+      const parsed = existing ? JSON.parse(existing) : [];
+      users = Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      console.warn('Failed to parse existing users:', err);
+      users = [];
+    }
+    const userExists = users.some((u: any) => u.email === user.email);
+    if (userExists) {
+      console.error('User already exists with this email.');
+      this.router.navigate(['/signup']);
+      alert('User already exists with this email.');
+    } else {
+      users.push(existingUserList);
+      localStorage.setItem('user', JSON.stringify(users));
+    }
   }
 
   login(email: string, password: string): boolean {
@@ -79,7 +76,7 @@ export class Auth {
       return true;
     }
 
-  const existing = localStorage.getItem('user');
+    const existing = localStorage.getItem('user');
     let users = [];
 
     try {
@@ -91,27 +88,29 @@ export class Auth {
     }
 
     // Find matching user
-    const matchedUser = users.find(u => u.email === email && u.password === password);
-
-  if (matchedUser) {
-    matchedUser.loggedIn = '1';
-    matchedUser.IsAdmin = '0'; // Set as needed
-
-    const updatedUsers = users.map(u =>
-      u.email === matchedUser.email ? matchedUser : u
+    const matchedUser = users.find(
+      (u) => u.email === email && u.password === password
     );
-    localStorage.setItem('user', JSON.stringify(updatedUsers));
 
-    // // Store logged-in user separately
-    // localStorage.setItem('user', JSON.stringify(matchedUser));
+    if (matchedUser) {
+      matchedUser.loggedIn = '1';
+      matchedUser.IsAdmin = '0'; // Set as needed
 
-    // Emit login status
-    this.loggedIn$.next(true);
-    this.isAdmin$.next(false);
-    this.userName$.next(this.extractUserName(matchedUser));
+      const updatedUsers = users.map((u) =>
+        u.email === matchedUser.email ? matchedUser : u
+      );
+      localStorage.setItem('user', JSON.stringify(updatedUsers));
 
-    return true;
-  }
+      // // Store logged-in user separately
+      // localStorage.setItem('user', JSON.stringify(matchedUser));
+
+      // Emit login status
+      this.loggedIn$.next(true);
+      this.isAdmin$.next(false);
+      this.userName$.next(this.extractUserName(matchedUser));
+
+      return true;
+    }
     return false;
   }
 
@@ -125,7 +124,7 @@ export class Auth {
     this.loggedIn$.next(false);
     this.isAdmin$.next(false);
     this.userName$.next('');
-    this.router.navigate(['/landing']);    
+    this.router.navigate(['/landing']);
     localStorage.removeItem('UserActive');
   }
 
